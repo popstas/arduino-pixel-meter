@@ -55,6 +55,9 @@ void loop(){
   }
 }
 
+/**
+ * @return {String} substring of str from begin of line to delim
+ */
 String firstPart(String str, char delim='|'){
   String out;
   int ind = str.indexOf(delim);
@@ -105,6 +108,9 @@ void parseInput(char inBytes[]){
   Serial.println(msg);*/
 }
 
+/**
+ * Light pixel with [input] color and [bright] brightness
+ */
 void light(int input, float bright){
   //Serial.print(input);
   //Serial.print("/");
@@ -124,7 +130,7 @@ void light(int input, float bright){
     );
   }
   else if(input>200 && input<=300){
-    input = input-200;
+    input = input-100;
     blinkPixel(
       setColorBright( getPixelHealth(input), bright ),
       3,
@@ -156,44 +162,6 @@ uint32_t getPixelHealth(float percent){
     g = 255;
   }
   return Color(r, g, b);
-}
-
-/** 0 - blue, 100 - red */
-uint32_t getPixelTemp(float grad){
-  uint8_t r=0, g=0, b=255;
-
-  if(grad<25){
-    r = 0;
-    g = round(grad/25.0 * 255);
-    b = 255;
-  }
-  else if(grad<50){
-    r = 0;
-    g = 255;
-    b = round((50-grad)/25.0 * 255);
-  }
-  else if(grad<75){
-    r = round((grad-50)/25.0 * 255);
-    g = 255;
-    b = 0;
-  }
-  else if(grad<=100){
-    r = 255;
-    g = round((100-grad)/25.0 * 255);;
-    b = 0;
-  }
-  /*Serial.print(grad);
-  Serial.print(" - ");
-  Serial.print(r);
-  Serial.print(", ");
-  Serial.print(g);
-  Serial.print(", ");
-  Serial.print(b);
-  Serial.print(" - ");
-  Serial.print(Color(r, g, b));
-  Serial.println();*/
-  float bright = 1;
-  return Color(r*bright, g*bright, b*bright);
 }
 
 void setPixelColor(uint32_t color){
@@ -281,8 +249,45 @@ void lcdPrint(String c){
       lcd.setCursor(0, 1);
       lcd.print(firstPart(c, '\\'));
     }
-    
   }
+}
+
+/** 0 - blue, 100 - red */
+uint32_t getPixelTemp(float grad){
+  uint8_t r=0, g=0, b=255;
+
+  if(grad<25){
+    r = 0;
+    g = round(grad/25.0 * 255);
+    b = 255;
+  }
+  else if(grad<50){
+    r = 0;
+    g = 255;
+    b = round((50-grad)/25.0 * 255);
+  }
+  else if(grad<75){
+    r = round((grad-50)/25.0 * 255);
+    g = 255;
+    b = 0;
+  }
+  else if(grad<=100){
+    r = 255;
+    g = round((100-grad)/25.0 * 255);;
+    b = 0;
+  }
+  /*Serial.print(grad);
+  Serial.print(" - ");
+  Serial.print(r);
+  Serial.print(", ");
+  Serial.print(g);
+  Serial.print(", ");
+  Serial.print(b);
+  Serial.print(" - ");
+  Serial.print(Color(r, g, b));
+  Serial.println();*/
+  float bright = 1;
+  return Color(r*bright, g*bright, b*bright);
 }
 
 void test_lcd(){
