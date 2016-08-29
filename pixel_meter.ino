@@ -28,7 +28,6 @@ void setup() {
   strip.show();
 
   lcd.init();
-  
   //test_lcd();
 }
 
@@ -242,7 +241,9 @@ void lcdPrint(String c){
   }
   else{
     lcd.backlight();
-    if(c.indexOf("\\")==-1) lcd.print(c);
+    if(c.indexOf("\\")==-1){
+      lcd.print(c);
+    }
     else{
       lcd.print(firstPart(c, '\\'));
       c = c.substring(c.indexOf("\\")+1);
@@ -293,13 +294,25 @@ uint32_t getPixelTemp(float grad){
 void test_lcd(){
   delay(100);
   lcd.backlight();
-  for(int i=1; i<10; i++){
+  //lcd.autoscroll();
+  for(int i=1; i<15; i++){
     lcd.print(i);
+    lcd.print(" ");
+    delay(200);
+  }
+  for(int i=1; i<10; i++){
+    lcd.scrollDisplayLeft();
     delay(200);
   }
   delay(2000);
-  lcd.clear();
-  lcd.noBacklight();
+  for(int i=1; i<10; i++){
+    lcd.scrollDisplayRight();
+    delay(200);
+  }
+
+  //delay(2000);
+  //lcd.clear();
+  //lcd.noBacklight();
 }
 
 void test(){
