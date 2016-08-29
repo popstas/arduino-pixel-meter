@@ -5,7 +5,7 @@
 - LiquidCrystal_I2C - версия из менеджера библиотек не работает! 
   Также не работает [fdebrabander/Arduino-LiquidCrystal-I2C-library](https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library),
   не помню, откуда я взял эту либу.
-  Нужно скопировать `libraries/LiquidCrystal_I2C` в `~/Documents/Arduino/libraries`
+  Нужно скопировать `vendor/libraries/LiquidCrystal_I2C` в `~/Documents/Arduino/libraries`
 
 ### Использование
 Принимает строки на COM-порт, разделенные `\n`, например:
