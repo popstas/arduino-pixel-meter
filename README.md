@@ -1,5 +1,7 @@
 Прошивка для Arduino + RGB LED WS2801 + LCD 16x2
 
+![pixel](img/pixel.jpg)
+
 ### Библиотеки
 - [Adafruit_WS2801](https://github.com/adafruit/Adafruit-WS2801-Library) - можно поставить через менеджер библиотек
 - LiquidCrystal_I2C - версия из менеджера библиотек не работает! 
